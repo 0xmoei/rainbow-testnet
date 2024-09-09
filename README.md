@@ -65,6 +65,8 @@ docker exec -it bitcoind /bin/bash
 **3- Create new wallet:**
 ```
 bitcoin-cli -testnet4 -rpcuser=demo -rpcpassword=demo -rpcport=5000 createwallet test
+bitcoin-cli -testnet4 -rpcuser=demo -rpcpassword=demo -rpcport=5000 loadwallet test
+bitcoin-cli -testnet4 -rpcuser=demo -rpcpassword=demo -rpcport=5000 getnewaddress
 ```
 
 **4- Exit the container:**
@@ -124,3 +126,9 @@ Kill screen
 ```
 screen -XS rbo quit
 ```
+
+## ERROR:
+if you get into you just need to rerun your indexer using step 5.3 and with the latest height of your bitcoin core node ( just check its logs using `docker ps -a` & `docker logs -f CONTAINER_ID` )
+
+Or check this faq
+https://github.com/rainbowprotocol-xyz/rbo_indexer_testnet/blob/main/FAQ.md
