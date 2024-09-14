@@ -127,6 +127,25 @@ Kill screen
 screen -XS rbo quit
 ```
 
+## 8- Upgrade Indexer
+* 1- Return to your rbo screen
+* 2- stop  it with `CTRL+C`
+* 3- Run the follwoing commands
+```console
+# Change 5050 to the port you customized beore or don't touch it
+cd $HOME && /bin/netstat -ntpl | grep 5050 | awk '{print $NF}' | awk -F"/" '{print $1}' | xargs -r kill -9  
+
+# Replace with the new rbo_worker
+wget https://storage.googleapis.com/rbo/rbo_worker/rbo_worker-linux-amd64-0.0.2-20240914-4ec80a8.tar.gz && tar -xzvf rbo_worker-linux-amd64-0.0.2-20240914-4ec80a8.tar.gz
+
+cp rbo_worker-linux-amd64-0.0.2-20240914-4ec80a8/rbo_worker rbo_indexer_testnet/rbo_worker
+
+# Start the new one
+cd rbo_indexer_testnet && chmod +x rbo_worker
+
+./rbo_worker worker --rpc http://127.0.0.1:5000 --password demo --username demo --start_height 42000
+```
+
 ## ERROR:
 if you get into you just need to rerun your indexer using step 5.3 and with the latest height of your bitcoin core node ( just check its logs using `docker ps -a` & `docker logs -f CONTAINER_ID` )
 
