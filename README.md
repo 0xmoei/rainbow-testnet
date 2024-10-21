@@ -80,6 +80,7 @@ exit
 cd $HOME
 git clone https://github.com/rainbowprotocol-xyz/rbo_indexer_testnet.git && cd rbo_indexer_testnet
 wget https://github.com/rainbowprotocol-xyz/rbo_indexer_testnet/releases/download/v0.0.1-alpha/rbo_worker
+cd rbo_indexer_testnet
 chmod +x rbo_worker
 ```
 
